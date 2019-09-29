@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+        <div id="app-5">
+               
+            <ol>
+                    <!-- Create an instance of the todo-item component -->
+                    <todo-item
+                            v-for="item in groceryList"
+                            v-bind:todo="item"
+                            v-bind:key="item.id"
+                            
+                    ></todo-item>
+            </ol>
+
+            <input v-model="ajout">
+            <button v-on:click="reverseMessage">Add</button>
+        </div>
+
+        <div id="tableau"> <!--le tr anle tableau no template template:'<table><tr>{{liste.text}}</tr></table>'-->
+            <table>
+                <tr>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <script>
+             Vue.component('table-item',{
+                template:'<tr></tr>' /// bouclena anatinle table
+
+
+             })
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        /*
+            Fonction mi-improuver anle component personnel '<todo-item>'
+
+        */Vue.component('todo-item', {
+            template: '<li>{{ todo.text }}</li>',
+            props: ['todo']
+        })
+
+        var app5 =  new Vue({
+  el: '#app-5',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  },
+  methods: {
+    reverseMessage: function () {
+      this.groceryList.push({
+          id:this.groceryList.length,
+          text:this.ajout
+      })
+    }
+  }
+})
+
+        
+        </script>
+    
+</body>
+</html>
